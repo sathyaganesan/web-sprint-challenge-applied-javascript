@@ -27,14 +27,19 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. What is the DOM?
+    => The DOM model is constructed as a tree of Objects like parent and child element.
 
 2. What is an event?
+    => Event is the thing that happened in the page.
 
 3. What is an event listener?
+    => EventListener that fires the action which user instruct.
 
 4. Why would we convert a NodeList into an Array?
+    => To activate the funtion like .map() and .reduce().
 
 5. What is a component?
+    =>Piece of function in a whole web page.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
