@@ -1,37 +1,80 @@
 // STEP 3: Create article cards.
 // -----------------------
 // Send an HTTP GET request to the following address: https://lambda-times-api.herokuapp.com/articles
+
+//hard-coding below tabArray because I'm unable to get the tabArray element that was created in Tabs.justify
+//TODO check with instructor and ask
+let tabArray = ['ALL', 'bootstrap', 'javascript', 'technology', 'jquery', 'node'];
+let topicArticlesMap = new Map();
+
+const tabs = document.querySelectorAll('.tab');
+tabs.forEach(element => {
+    console.log(' tab names = ' + element);
+    element.addEventListener('click', (item) => {        
+        console.log(item);
+
+        //TODO hide all articles, all 100s of articles, hide them
+        //cardsContainer.removeChildren()
+
+        if(item == 'All'){
+            let allArtilcles = topicArticlesMap.values();
+            allArtilcles.forEach(item => {
+                cardsContainer.appendChild(cardMaker(item));
+            });
+
+        } else {
+            let articlesToBeShown =  topicArticlesMap.get(item);
+            articlesToBeShown.forEach(item => {
+                cardsContainer.appendChild(cardMaker(item));
+            });
+        }
+        
+    });
+});
+
 axios
-
 .get(`https://lambda-times-api.herokuapp.com/articles`)
-.then((res) => {
-    
-    bootstrapArray = res.data.articles.bootstrap;
-    javaScriptArray = res.data.articles.javascript;
-    technologyArray = res.data.articles.technology;
-    jqueryArray = res.data.articles.jquery;
-    nodeArray = res.data.articles.node;
-    console.log(res);
+.then((res) => {    
+    tabArray.forEach(element => {
+        if(element === 'ALL'){
+            //do nothing.. do not store all articles          
+        } else {
+            let articles = res.data.articles[element];
+            topicArticlesMap.set(element, articles);
+            console.log('stored map key='+element+' value = '+ articles);
 
-    bootstrapArray.forEach((item) => {
-        cardsContainer.appendChild(cardMaker(item));
+            articles.forEach(element => {
+                cardsContainer.appendChild(cardMaker(element));
+            });
+        }
     });
 
-    javaScriptArray.forEach((item) => {
-        cardsContainer.appendChild(cardMaker(item));
-    });
+    // bootstrapArray = res.data.articles.bootstrap;
+    // javaScriptArray = res.data.articles.javascript;
+    // technologyArray = res.data.articles.technology;
+    // jqueryArray = res.data.articles.jquery;
+    // nodeArray = res.data.articles.node;
+    // console.log(res);
 
-    technologyArray.forEach((item) => {
-        cardsContainer.appendChild(cardMaker(item));
-    });
+    // bootstrapArray.forEach((item) => {
+    //     cardsContainer.appendChild(cardMaker(item));
+    // });
 
-    jqueryArray.forEach((item) => {
-        cardsContainer.appendChild(cardMaker(item));
-    });
+    // javaScriptArray.forEach((item) => {
+    //     cardsContainer.appendChild(cardMaker(item));
+    // });
 
-    nodeArray.forEach((item) => {
-        cardsContainer.appendChild(cardMaker(item));
-    });
+    // technologyArray.forEach((item) => {
+    //     cardsContainer.appendChild(cardMaker(item));
+    // });
+
+    // jqueryArray.forEach((item) => {
+    //     cardsContainer.appendChild(cardMaker(item));
+    // });
+
+    // nodeArray.forEach((item) => {
+    //     cardsContainer.appendChild(cardMaker(item));
+    // });
 
     
 })
@@ -40,6 +83,7 @@ axios
     console.log(err);
 });
 
+var topicArticlesArray;
 
 // Study the response data you get back, closely.
 // You will be creating a card for each article in the response.
