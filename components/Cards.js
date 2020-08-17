@@ -32,6 +32,7 @@ axios
     nodeArray.forEach((item) => {
         cardsContainer.appendChild(cardMaker(item));
     });
+
     
 })
 
@@ -64,12 +65,12 @@ let cardArray = [];
 function cardMaker(argumt) {
 
 // Element creater:
-const card = document.createElement('div');
-const headLine = document.createElement('div');
-const author = document.createElement('div');
-const imgContainer = document.createElement('div');
-const imageEle = document.createElement('img');
-const authorName = document.createElement('span');
+    const card = document.createElement('div');
+    const headLine = document.createElement('div');
+    const author = document.createElement('div');
+    const imgContainer = document.createElement('div');
+    const imageEle = document.createElement('img');
+    const authorName = document.createElement('span');
 
 // Appending elements:
     card.appendChild(headLine);
@@ -88,6 +89,11 @@ const authorName = document.createElement('span');
 // Adding content: 
     headLine.textContent = argumt.headline;
     authorName.textContent = argumt.authorName;
+
+    card.addEventListener('click', () => {
+        // headLine.style.color = "red";
+        console.log(headLine);
+    });
 
     return card;
 }
