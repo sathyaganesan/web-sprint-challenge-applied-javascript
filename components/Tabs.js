@@ -8,7 +8,7 @@ axios
 .then((res) => {    
     let tabArray = [];
     tabArray = res.data.topics;
-    console.log(tabArray)
+    // console.log(tabArray)
 
     elemt1.textContent = tabArray[0];
     elemt2.textContent = tabArray[1];
